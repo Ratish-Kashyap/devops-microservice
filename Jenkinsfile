@@ -49,6 +49,33 @@ pipeline {
 			  sh "mvn failsafe:integration-test failsafe:verify"
 		 } 
 
+	}
+	stage('Package'){
+		  steps{
+			  sh "mvn package -DskipTests"
+		 } 
+
+	}
+	stage('Build Docker Image'){
+		  steps{
+			  //"docker build -t ratishkashyap/jenkins-devops:$env.BUILD_TAG"
+			  script{ 
+				  dockerImage = docker.build("docker build -t ratishkashyap/jenkins-devops:${env.BUILD_TAG}")
+			  } 
+
+		 } 
+	stage('Docker Push Image'){
+		  steps{
+			  //"docker build -t ratishkashyap/jenkins-devops:$env.BUILD_TAG"
+			  script{ 
+				  docker.withRegistry('', 'dockerhub'){ 
+				  dockerImage.push();
+				  dockerImage.push('latest');
+				   } 
+			  } 
+
+		 } 
+
 		}
 	}
 
