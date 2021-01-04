@@ -60,7 +60,7 @@ pipeline {
 		  steps{
 			  //"docker build -t ratishkashyap/jenkins-devops:$env.BUILD_TAG"
 			  script{ 
-				  dockerImage = docker.build("docker build -t ratishkashyap/jenkins-devops:${env.BUILD_TAG}")
+				  dockerImage = docker.build("ratishkashyap/jenkins-devops:${env.BUILD_TAG}")
 			  } 
 			} 
 
