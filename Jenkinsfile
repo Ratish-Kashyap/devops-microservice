@@ -69,7 +69,7 @@ pipeline {
 		  steps{
 			  //"docker build -t ratishkashyap/jenkins-devops:$env.BUILD_TAG"
 			  script{ 
-				  docker.withRegistry('', 'dockerhub'){ 
+				  docker.withRegistry('', 'docker'){ 
 				  dockerImage.push();
 				  dockerImage.push('latest');
 				   } 
