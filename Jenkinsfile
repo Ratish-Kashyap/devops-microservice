@@ -62,6 +62,7 @@ pipeline {
 			  script{ 
 				  dockerImage = docker.build("docker build -t ratishkashyap/jenkins-devops:${env.BUILD_TAG}")
 			  } 
+			} 
 
 		 } 
 	stage('Docker Push Image'){
